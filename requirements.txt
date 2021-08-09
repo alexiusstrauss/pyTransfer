@@ -1,0 +1,9 @@
+Django==3.2.6
+psycopg2-binary==2.8.6
+ipython==7.19.0
+pytest==6.1.2
+pytest-cov==2.10.1
+pytest-django==4.1.0
+djangorestframework
+markdown
+django-filter

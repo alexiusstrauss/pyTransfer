@@ -1,0 +1,7 @@
+[run]
+omit = 
+    *migrations*,
+    *desafio*,
+    *tests*,
+    pytransfer*
+    conftest.py
