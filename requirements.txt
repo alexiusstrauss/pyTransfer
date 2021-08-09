@@ -7,3 +7,4 @@ pytest-django==4.1.0
 djangorestframework
 markdown
 django-filter
+django-rest-swagger
