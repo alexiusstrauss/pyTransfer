@@ -27,7 +27,6 @@ class PessoaRetrive(generics.RetrieveUpdateDestroyAPIView):
 
 
 class HistorysAPIView(generics.ListAPIView):
-    queryset            = History.objects.all()
     serializer_class    = HistorySerializer
 
     def get_queryset(self):
