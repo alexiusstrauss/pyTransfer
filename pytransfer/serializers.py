@@ -159,8 +159,7 @@ class HistorySerializer(serializers.ModelSerializer):
             loBalance.destino   = Destino
             loBalance.valor     = Valor
             loBalance.tx_token  = Token
-            loBalance.save()
-            pass        
+            loBalance.save()        
 
         if loHistory.status == 'Finalizado':
             # Primeiro debita o valor do remetente
