@@ -9,18 +9,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:11
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
-
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python 3.8
@@ -29,17 +17,14 @@ jobs:
         python-version: 3.8
     - name: Install depedencies
       run: |
-        python -m pip install --upgrade pip
+        python3 -m pip install --upgrade pip
         pip install -r requirements.txt
-    - uses: harmon758/postgresql-action@v1
-      with:
-        postgresql version: '11'
 
     - name: Run migrations
-      run: python manage.py migrate
+      run: python3 manage.py migrate
 
     - name: Run tests
-      run: python manage.py test
+      run: python3 pytest -x
 
     - name: Lint with flake8
       run: |
