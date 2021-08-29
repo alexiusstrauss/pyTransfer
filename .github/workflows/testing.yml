@@ -2,7 +2,7 @@ name: Django application
 
 on:
   push:
-    branches: ['main', 'developdevelopment', 'sourcery/main']
+    branches: ['main', 'development', 'sourcery/main']
       
 jobs:
   build:
