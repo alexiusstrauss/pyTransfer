@@ -24,7 +24,9 @@ jobs:
 
 
     - name: Run migrations
-      run: python3 manage.py migrate
+      run: |
+        python3 manage.py makemigrations
+        python3 manage.py migrate
 
     - name: Lint with flake8
       run: |
@@ -38,9 +40,6 @@ jobs:
         pip install coverage
         coverage run manage.py test
         coverage report 
-
-
-
 
     - name: Django tests 
       run: |

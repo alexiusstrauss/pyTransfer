@@ -50,7 +50,8 @@ LOCAL_APPS = [
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
-REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
 
 
 MIDDLEWARE = [
@@ -77,9 +78,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'libraries' : {
-                'staticfiles': 'django.templatetags.static',    
-            }         
+            'libraries': {
+                'staticfiles': 'django.templatetags.static',
+            }
         },
     },
 ]
@@ -91,7 +92,7 @@ WSGI_APPLICATION = 'dessafio.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-   'default': {
+    'default': {
 
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
