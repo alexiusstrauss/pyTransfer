@@ -23,14 +23,11 @@ jobs:
     - name: Run migrations
       run: python3 manage.py migrate
 
-    - name: Run tests
-      run: python3 manage.py test
-
     - name: Coverage report
       run: |
         pip install coverage
         coverage run manage.py test
 
-    - name: Django
+    - name: Django tests 
       run: |
         python3 manage.py test

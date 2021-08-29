@@ -168,7 +168,7 @@ class PyTestProject(APITestCase):
         payload = {
             "remetente": 1, # passando o mesmo id do token destino
             "token_destino": token.codigo,
-            "valor": (token.pessoa.balance + 1),  # valor maior que saldo em conta
+            "valor": (token.pessoa.balance + 5000),  # valor maior que saldo em conta
             "status": "Finalizado"
         }        
 
