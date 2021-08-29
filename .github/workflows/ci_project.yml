@@ -24,7 +24,7 @@ jobs:
       run: python3 manage.py migrate
 
     - name: Run tests
-      run: python3 pytest -x
+      run: python3 manage.py pytest -x
 
     - name: Lint with flake8
       run: |
