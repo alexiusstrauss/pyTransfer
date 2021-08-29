@@ -4,6 +4,9 @@ staticfiles/
 /media/
 mediafiles/
 
+/flake-report/
+
+
 *.pyc
 __pycache__/
 *.py[cod]
