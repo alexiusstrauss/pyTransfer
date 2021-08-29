@@ -9,7 +9,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:10.8
+        image: postgres:13
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -31,7 +31,7 @@ jobs:
         pip install -r requirements.txt
     - uses: harmon758/postgresql-action@v1
       with:
-        postgresql version: '11'
+        postgresql version: '13'
 
     - name: Run migrations
       run: python manage.py migrate
@@ -48,7 +48,7 @@ jobs:
       run: |
         pip intall coverage
         coverage run manage.py tests
-        
+
     - name: Django
       run: |
         python3 manage.py test
