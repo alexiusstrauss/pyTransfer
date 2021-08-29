@@ -1,41 +1,54 @@
-name: Django Tests
+name: Django application
 
-on:
-  push:
-    branches: 
-      ['main', 'development']
+on: [push]
       
-    
-  pull_request:
-    branches:
-      - main
-
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v2
-    - name: SetUp Python3.8
-      uses: actions/setup-python@v2 
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
       with:
         python-version: 3.8
-  
-    - name: Install requirements
+    - name: Install depedencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-  
+    - uses: harmon758/postgresql-action@v1
+      with:
+        postgresql version: '11'
+
+    - name: Run migrations
+      run: python manage.py migrate
+
+    - name: Run tests
+      run: python manage.py test
+
     - name: Lint with flake8
       run: |
         pip install flake8
         flake8
-    
+
     - name: Coverage report
       run: |
         pip intall coverage
         coverage run manage.py tests
-    
+        
     - name: Django
       run: |
         python3 manage.py test
