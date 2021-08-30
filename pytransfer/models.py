@@ -96,8 +96,10 @@ class Balance(models.Model):
             self.valor
         )
 
+
 class History(models.Model):
 
+    
     F = 'Finalizado'
     E = 'Executando'
     P = 'Pendente'

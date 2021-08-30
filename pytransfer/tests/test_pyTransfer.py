@@ -50,7 +50,7 @@ class PyTestProject(APITestCase):
 
     def setUp(self):
         """
-        Iniciando o SetUp de test            
+        Iniciando o SetUp de test
         """
         response = self.client.post(
             self.url_pessoa, self.Alexius, format='json')
@@ -72,7 +72,7 @@ class PyTestProject(APITestCase):
 
     def test_verifica_criacao_token_vinculado_a_pessoa(self):
         """
-            Verifica se ha um token para a pessoa de test
+        Verifica se ha um token para a pessoa de test
         """
         self.assertEqual(Token.objects.count(), Pessoa.objects.count())
         self.assertEqual(
@@ -84,7 +84,6 @@ class PyTestProject(APITestCase):
         '''
         Verifica se foi criado um saldo aleatorio para objeto Pessoa
         '''
-        # Verifica se todas as pessoas criadas, possuem um saldo na tabela balance
         self.assertEqual(Balance.objects.count(), Pessoa.objects.count())
         self.assertEqual(Balance.objects.first().valor >= 0, True)
         # confere se o saldo da primeira pessoa é igual ao saldo em balance.
@@ -113,7 +112,6 @@ class PyTestProject(APITestCase):
         Testa se o token destino nao esta cancelado para receber transferencia
         '''
         token = Token.objects.last()
-        # desativa pessoa
         token.pessoa.ativo = False
         token.pessoa.save()
 
@@ -132,11 +130,10 @@ class PyTestProject(APITestCase):
         '''
         Testa o erro de tentativa de transferir para o proprio token
         '''
-
         token = Token.objects.last()
 
         payload = {
-            "remetente": token.pessoa.id,  # passando o mesmo id do token destino
+            "remetente": token.pessoa.id,
             "token_destino": token.codigo,
             "valor": 5,
             "status": "Finalizado"
@@ -150,12 +147,11 @@ class PyTestProject(APITestCase):
         '''
         Testa se o saldo na conta é maior ou igual ao valor a ser transferido
         '''
-        token = Token.objects.last()
+        token = Token.objects.first()
 
         payload = {
-            "remetente": 1,  # passando o mesmo id do token destino
+            "remetente": 1, 
             "token_destino": token.codigo,
-            # valor maior que saldo em conta
             "valor": (token.pessoa.balance + 9000),
             "status": "Finalizado"
         }
@@ -214,7 +210,7 @@ class PyTestProject(APITestCase):
         # destinatario saldo = saldo inicial
         self.assertEqual(destinatario_saldo, destinatario.balance)
 
-        # remetente fica com valor da transacao bloqueado. ficando balance-transacao
+        
         self.assertEqual(remetente.balance,
                          (remetente_saldo - valor_transacao))
 
@@ -246,7 +242,7 @@ class PyTestProject(APITestCase):
         # destinatario saldo = saldo inicial
         self.assertEqual(destinatario_saldo, destinatario.balance)
 
-        # remetente fica com valor da transacao bloqueado. ficando balance-transacao
+        
         self.assertEqual(remetente.balance,
                          (remetente_saldo - valor_transacao))
 
