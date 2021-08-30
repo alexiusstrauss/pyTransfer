@@ -6,6 +6,8 @@ mediafiles/
 
 /flake-report/
 
+.vscode/
+
 
 *.pyc
 __pycache__/
