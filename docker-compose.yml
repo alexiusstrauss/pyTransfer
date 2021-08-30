@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
     web:
+        container_name: Django
         build: .
         command: python manage.py runserver 0.0.0.0:8000
         volumes:
@@ -11,6 +12,7 @@ services:
         depends_on: 
             - db
     db:
+        container_name: Postgresql
         image: postgres:13
         environment:
             - POSTGRES_USER=postgres

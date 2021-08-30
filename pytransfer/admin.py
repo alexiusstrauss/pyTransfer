@@ -6,4 +6,3 @@ admin.site.register(Pessoa)
 admin.site.register(Token)
 admin.site.register(Balance)
 admin.site.register(History)
-
