@@ -1,10 +1,13 @@
 version: "3.8"
 
 services:
-    web:
-        container_name: Django
+    app:
+        image: pytransfer
+        container_name: pytransfer
         build: .
-        command: python manage.py runserver 0.0.0.0:8000
+        command: sh -c "python manage.py makemigrations --noinput &&
+                    python manage.py migrate --noinput &&
+                    python manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/code
         ports:
@@ -19,6 +22,5 @@ services:
             - POSTGRES_PASSWORD=postgres
         volumes:
             - postgres_data:/var/lib/postgresql/data/
-
 volumes:
     postgres_data:
