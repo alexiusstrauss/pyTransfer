@@ -11,9 +11,9 @@ cd pyTransfer
 docker-compose up -d --build
 
 - crie as tabelas no banco de dados
-docker-compose exec web python manage.py makemigrations
-docker-compose exec web python manage.py migrate
-docker-compose exec web python manage.py createsuperuser
+docker-compose exec app python manage.py makemigrations
+docker-compose exec app python manage.py migrate
+docker-compose exec app python manage.py createsuperuser
 ```
 
 ## Testes
@@ -22,19 +22,19 @@ Lista de funcoes para test
 
 ```bash
 
-docker-compose exec web pytest -x
+docker-compose exec app pytest -x
 
-docker-compose exec web pytest -k test_verifica_criacao_token_vinculado_a_pessoa
-docker-compose exec web pytest -k test_verifica__ha_saldo_vinculado_a_pessoa
-docker-compose exec web pytest -k test_testar_deletar_ultima_pessoa
-docker-compose exec web pytest -k test_testar_transferir_para_token_cancelado
-docker-compose exec web pytest -k test_verificar_erro_transferir_para_proprio_token
-docker-compose exec web pytest -k test_verificar_se_tem_saldo_suficiente
-docker-compose exec web pytest -k test_transferir_entre_duas_pessoas
-docker-compose exec web pytest -k test_verificar_saldo_transferencia_status_pendente
-docker-compose exec web pytest -k test_verificar_saldo_transferencia_status_executando
-docker-compose exec web pytest -k test_verificar_saldo_transferencia_status_finalizado
-docker-compose exec web pytest -k test_listar_todas_historys
+docker-compose exec app pytest -k test_verifica_criacao_token_vinculado_a_pessoa
+docker-compose exec app pytest -k test_verifica__ha_saldo_vinculado_a_pessoa
+docker-compose exec app pytest -k test_testar_deletar_ultima_pessoa
+docker-compose exec app pytest -k test_testar_transferir_para_token_cancelado
+docker-compose exec app pytest -k test_verificar_erro_transferir_para_proprio_token
+docker-compose exec app pytest -k test_verificar_se_tem_saldo_suficiente
+docker-compose exec app pytest -k test_transferir_entre_duas_pessoas
+docker-compose exec app pytest -k test_verificar_saldo_transferencia_status_pendente
+docker-compose exec app pytest -k test_verificar_saldo_transferencia_status_executando
+docker-compose exec app pytest -k test_verificar_saldo_transferencia_status_finalizado
+docker-compose exec app pytest -k test_listar_todas_historys
 
 ```
 
